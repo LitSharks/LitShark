@@ -17,7 +17,7 @@
       background-color: #fff;
       color: #000;
     }
-    /* Header and Navigation */
+    /* Header */
     header {
       background: #333;
       color: #fff;
@@ -46,10 +46,12 @@
       border-radius: 50%;
       object-fit: cover;
     }
+    /* Navigation (placed below header) */
     nav {
       background: #444;
       padding: 10px;
       text-align: center;
+      position: relative;
     }
     nav a {
       color: #fff;
@@ -59,6 +61,71 @@
     }
     nav a:hover {
       text-decoration: underline;
+    }
+    /* Settings Dropdown (on same y-axis as nav links) */
+    #settingsMenu {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 20px;
+    }
+    #settingsButton {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #settingsDropdown {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 40px;
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      z-index: 200;
+    }
+    /* iOS-style toggle switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 28px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
     }
     /* Sections */
     section {
@@ -92,7 +159,7 @@
     }
     .service-box img {
       width: 100%;
-      height: 250px; /* Force a square area */
+      height: 250px;
       object-fit: cover;
       object-position: center;
       display: block;
@@ -100,6 +167,7 @@
     .service-title {
       padding: 10px;
       background: #f7f7f7;
+      color: #000;
       font-size: 1.2em;
     }
     /* Modal Styles */
@@ -150,7 +218,11 @@
       object-fit: cover;
       object-position: center;
     }
-    /* Table Styles (for Snow Removal) */
+    /* Wrap Recent Jobs section so it can be hidden entirely */
+    .recent-jobs-section {
+      margin-top: 20px;
+    }
+    /* Table Styles */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -176,7 +248,7 @@
       height: 24px;
       object-fit: contain;
     }
-    /* DARK MODE OVERRIDES */
+    /* DARK MODE OVERRIDES (system-based) */
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #121212;
@@ -192,6 +264,10 @@
         background: #333;
         border-color: #444;
       }
+      .service-title {
+        background: #444;
+        color: #eee;
+      }
       .modal-content {
         background-color: #222;
         color: #fff;
@@ -203,15 +279,86 @@
       table th, table td {
         border-color: #555;
       }
-      /* Invert the logo colors for dark mode */
-      .header-logo {
+      .header-logo, .contact-item img {
         filter: invert(1);
       }
+      #settingsDropdown {
+        background: #333;
+        color: #eee;
+        border-color: #555;
+      }
+    }
+    /* MANUAL OVERRIDES */
+    body.force-dark {
+      background-color: #121212 !important;
+      color: #eee !important;
+    }
+    body.force-dark header { background: #222 !important; }
+    body.force-dark nav { background: #333 !important; }
+    body.force-dark .service-box {
+      background: #333 !important;
+      border-color: #444 !important;
+    }
+    body.force-dark .service-title {
+      background: #444 !important;
+      color: #eee !important;
+    }
+    body.force-dark .modal-content {
+      background-color: #222 !important;
+      color: #fff !important;
+      border-color: #555 !important;
+    }
+    body.force-dark table thead tr {
+      background-color: #333 !important;
+    }
+    body.force-dark table th, body.force-dark table td {
+      border-color: #555 !important;
+    }
+    body.force-dark .header-logo, body.force-dark .contact-item img {
+      filter: invert(1) !important;
+    }
+    body.force-dark #settingsDropdown {
+      background: #333 !important;
+      color: #eee !important;
+      border-color: #555 !important;
+    }
+    body.force-light {
+      background-color: #fff !important;
+      color: #000 !important;
+    }
+    body.force-light header { background: #333 !important; }
+    body.force-light nav { background: #444 !important; }
+    body.force-light .service-box {
+      background: #fff !important;
+      border-color: #ccc !important;
+    }
+    body.force-light .service-title {
+      background: #f7f7f7 !important;
+      color: #000 !important;
+    }
+    body.force-light .modal-content {
+      background-color: #fff !important;
+      color: #000 !important;
+      border-color: #888 !important;
+    }
+    body.force-light table thead tr {
+      background-color: #f0f0f0 !important;
+    }
+    body.force-light table th, body.force-light table td {
+      border-color: #ccc !important;
+    }
+    body.force-light .header-logo, body.force-light .contact-item img {
+      filter: none !important;
+    }
+    body.force-light #settingsDropdown {
+      background: #fff !important;
+      color: #000 !important;
+      border-color: #ccc !important;
     }
   </style>
 </head>
 <body>
-  <!-- Header and Navigation -->
+  <!-- Header -->
   <header>
     <div class="header-container">
       <h1>LitShark Services</h1>
@@ -221,16 +368,27 @@
       </div>
     </div>
   </header>
+  
+  <!-- Navigation (placed below header) -->
   <nav>
     <a href="#services">Services</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
+    <div id="settingsMenu">
+      <button id="settingsButton">Settings &#9662;</button>
+      <div id="settingsDropdown">
+        <label class="toggle-switch">
+          <input type="checkbox" id="modeToggle">
+          <span class="slider"></span>
+        </label>
+        <span id="modeLabel">Dark Mode</span>
+      </div>
+    </div>
   </nav>
   
   <!-- Services Section -->
   <section id="services">
     <h2>Services</h2>
-    
     <!-- Regular Services -->
     <h3>Regular Services</h3>
     <div class="services-grid">
@@ -250,8 +408,11 @@
         <img src="images/3d-printing.png" alt="3D Design & Printing">
         <div class="service-title">3D Design & Printing</div>
       </div>
+      <div class="service-box" data-modal="modal-webdesign">
+        <img src="images/web-design.png" alt="Web Design">
+        <div class="service-title">Web Design</div>
+      </div>
     </div>
-    
     <!-- Irregular Work -->
     <h3>Irregular Work</h3>
     <p>
@@ -289,9 +450,9 @@
   <section id="about">
     <h2>About</h2>
     <p>
-      Hi, I'm Max Uribe. I handle snow removal, window cleaning, painting, and small home repairs on a personal, one-on-one basis. 
-      I believe in straightforward service without unnecessary fuss. For smaller tasks, I take care of everything myself, 
-      and for larger projects, I refer you to trusted affiliates who share my commitment to quality work. 
+      Hi, I'm Max Uribe. I handle snow removal, window cleaning, painting, and small home repairs on a personal, one-on-one basis.
+      I believe in straightforward service without unnecessary fuss. For smaller tasks, I take care of everything myself,
+      and for larger projects, I refer you to trusted affiliates who share my commitment to quality work.
       Thank you for considering my services—I look forward to helping keep your property in top shape.
     </p>
   </section>
@@ -310,9 +471,7 @@
     <div class="contact-item">
       <img src="images/website-icon.png" alt="Website Icon">
       <span>
-        <a href="https://litshark.ca" target="_blank" style="color:inherit; text-decoration:none;">
-          litshark.ca
-        </a>
+        <a href="https://litshark.ca" target="_blank" style="color:inherit; text-decoration:none;">litshark.ca</a>
       </span>
     </div>
   </section>
@@ -324,7 +483,7 @@
       <span class="close">&times;</span>
       <h2>Snow Removal</h2>
       <p>
-        I personally clear driveways, walkways, and small parking areas during the winter. 
+        I personally clear driveways, walkways, and small parking areas during the winter.
         When heavy snow or ice hits, you can count on me to keep your property safe and accessible—handled one-on-one.
       </p>
       <h3>Availability</h3>
@@ -334,12 +493,11 @@
         <li>Sun: All day</li>
       </ul>
       <h3>Prices</h3>
-      <!-- Integrated Apartment-House -->
       <h4>Integrated Apartment-House</h4>
       <p><em>"Compact Front-Entry Home"</em></p>
       <p>
-        A conjoined apartment or townhouse that has no driveway after the sidewalk. 
-        The entrance typically consists of house steps or a porch that is 1-2 meters in length.
+        A conjoined apartment or townhouse with no driveway after the sidewalk.
+        The entrance typically consists of house steps or a porch (1-2 meters).
       </p>
       <table>
         <thead>
@@ -363,12 +521,11 @@
           </tr>
         </tbody>
       </table>
-      <!-- Extended Driveway Home -->
       <h4>Extended Driveway Home</h4>
       <p><em>"Spacious Entryway Home"</em></p>
       <p>
-        A detached or semi-detached house that has a continued driveway after the sidewalk and 
-        features a porch, steps, or pathway of more than 2 meters leading to the entrance.
+        A detached or semi-detached house with a continued driveway after the sidewalk
+        and featuring a porch, steps, or pathway over 2 meters.
       </p>
       <table>
         <thead>
@@ -396,10 +553,12 @@
           </tr>
         </tbody>
       </table>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/snow-removal-before.jpg" alt="Before">
-        <img src="images/snow-removal-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/snow-removal-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/snow-removal-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -410,17 +569,19 @@
       <span class="close">&times;</span>
       <h2>Window Cleaning</h2>
       <p>
-        Enjoy sparkling windows without the fuss. I clean both the inside and outside of your windows, 
-        removing dirt and streaks so you get a clear view every day.
+        Enjoy sparkling windows without the fuss. I clean both the inside and outside of your windows,
+        removing dirt and streaks so you get a clear view.
       </p>
       <h3>Availability</h3>
-      <p>Upon request during summer, limited availability outside season.</p>
+      <p>Upon request during summer; limited availability outside season.</p>
       <h3>Prices</h3>
       <p>Upon quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/window-cleaning-before.jpg" alt="Before">
-        <img src="images/window-cleaning-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/window-cleaning-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/window-cleaning-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -431,22 +592,23 @@
       <span class="close">&times;</span>
       <h2>Painting</h2>
       <p>
-        If you're looking to refresh your space, I offer personalized painting services for interiors and exteriors. 
-        I pay attention to every detail to give your home a fresh, lasting look.
+        I offer personalized painting services for interiors and exteriors to refresh your space.
       </p>
       <h3>Availability</h3>
-      <p>Upon request during summer, limited availability outside season.</p>
+      <p>Upon request during summer; limited availability outside season.</p>
       <h3>Prices</h3>
       <p>Upon quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/painting-before.jpg" alt="Before">
-        <img src="images/painting-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/painting-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/painting-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
   
-  <!-- 3D Design & Printing Modal -->
+  <!-- 3D Design & Printing Modal (No Recent Jobs) -->
   <div id="modal-3d" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -457,12 +619,23 @@
       <h3>Availability</h3>
       <p>Available upon request. Turnaround time varies by project complexity.</p>
       <h3>Prices</h3>
-      <p>Pricing depends on design complexity, print size, and materials. Please contact me with your project details for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/3d-printing-before.jpg" alt="Before">
-        <img src="images/3d-printing-after.jpg" alt="After">
-      </div>
+      <p>Pricing depends on design complexity, print size, and materials. Please contact me for a quote.</p>
+    </div>
+  </div>
+  
+  <!-- Web Design Modal (No Recent Jobs) -->
+  <div id="modal-webdesign" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Web Design</h2>
+      <p>
+        I provide clean, simple web design solutions tailored to your needs.
+        The approach is straightforward and functional.
+      </p>
+      <h3>Availability</h3>
+      <p>Upon request.</p>
+      <h3>Prices</h3>
+      <p>Upon quote.</p>
     </div>
   </div>
   
@@ -472,17 +645,18 @@
       <span class="close">&times;</span>
       <h2>Home Finishing</h2>
       <p>
-        Need a final touch for your home? I can help with small carpentry fixes, trim work, or other finishing touches. 
-        For bigger tasks, I’m happy to refer you to a reliable specialist.
+        Need a final touch for your home? I handle small carpentry fixes, trim work, or other finishing touches.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/home-finishing-before.jpg" alt="Before">
-        <img src="images/home-finishing-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/home-finishing-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/home-finishing-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -493,17 +667,18 @@
       <span class="close">&times;</span>
       <h2>Drywalling/Framing</h2>
       <p>
-        Whether you need a wall patched or a bit of framing work, I handle smaller drywall projects. 
-        For more extensive jobs, I can refer you to a trusted contractor.
+        I handle small drywall patches and framing work. For larger jobs, I can refer you to a trusted contractor.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/drywall-framing-before.jpg" alt="Before">
-        <img src="images/drywall-framing-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/drywall-framing-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/drywall-framing-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -514,17 +689,18 @@
       <span class="close">&times;</span>
       <h2>Plumbing</h2>
       <p>
-        Got a minor leak or a simple plumbing fix? I can take care of smaller issues, or 
-        connect you with a reliable plumber for bigger tasks.
+        Got a minor leak or a simple plumbing fix? I handle small issues or connect you with a reliable plumber for bigger tasks.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/plumbing-before.jpg" alt="Before">
-        <img src="images/plumbing-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/plumbing-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/plumbing-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -535,17 +711,18 @@
       <span class="close">&times;</span>
       <h2>Electrician</h2>
       <p>
-        If you need a quick electrical fix—like installing a light fixture or troubleshooting a minor issue—I can help. 
-        For more complicated projects, I'll connect you with a trusted electrician.
+        I can help with quick electrical fixes like installing light fixtures or troubleshooting minor issues.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/electrician-before.jpg" alt="Before">
-        <img src="images/electrician-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/electrician-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/electrician-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -556,16 +733,18 @@
       <span class="close">&times;</span>
       <h2>Blade Smithing</h2>
       <p>
-        Looking for a custom blade? One of my favorite side hobbies is knife crafting during the summer, and I would be happy to provide you with a strong and long lasting blade from your chosen materials.
+        I craft custom blades as a side hobby during the summer. I can provide a strong, long-lasting blade from your chosen materials.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/blade-smithing-before.jpg" alt="Before">
-        <img src="images/blade-smithing-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/blade-smithing-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/blade-smithing-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
@@ -576,27 +755,111 @@
       <span class="close">&times;</span>
       <h2>Flooring</h2>
       <p>
-        I provide flooring installation and repair services. Whether it's a repair or a new installation, I handle the work with care, and for larger projects, I can refer you to a trusted specialist.
+        I provide flooring installation and repair services. Whether it's a repair or a new installation, I handle the work with care and for larger projects, can refer you to a trusted specialist.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
       <h3>Prices</h3>
       <p>Feel free to reach out for a quote.</p>
-      <h3>Recent Jobs</h3>
-      <div class="job-images">
-        <img src="images/flooring-before.jpg" alt="Before">
-        <img src="images/flooring-after.jpg" alt="After">
+      <div class="recent-jobs-section">
+        <h3>Recent Jobs</h3>
+        <div class="job-images">
+          <img src="images/flooring-before.jpg" alt="Before" onerror="this.closest('.recent-jobs-section').style.display='none';">
+          <img src="images/flooring-after.jpg" alt="After" onerror="this.closest('.recent-jobs-section').style.display='none';">
+        </div>
       </div>
     </div>
   </div>
   
+  <!-- Modal Event Listeners -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Add click listeners for service boxes to show modals
+      document.querySelectorAll('.service-box').forEach(box => {
+        box.addEventListener('click', () => {
+          const modalId = box.getAttribute('data-modal');
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.style.display = 'block';
+          }
+        });
+      });
+      
+      // Add click listeners for modal close buttons
+      document.querySelectorAll('.modal .close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modal = btn.closest('.modal');
+          modal.style.display = 'none';
+        });
+      });
+      
+      // Hide modal when clicking outside the modal content
+      window.addEventListener('click', (event) => {
+        if (event.target.classList.contains('modal')) {
+          event.target.style.display = 'none';
+        }
+      });
+      
+      // Settings Dropdown Toggle
+      document.getElementById("settingsButton").addEventListener("click", function() {
+        var dropdown = document.getElementById("settingsDropdown");
+        if (dropdown.style.display === "none" || dropdown.style.display === "") {
+          dropdown.style.display = "block";
+        } else {
+          dropdown.style.display = "none";
+        }
+      });
+      
+      // Dark/Light Mode Toggle
+      document.getElementById("modeToggle").addEventListener("change", function() {
+        if (this.checked) {
+          document.body.classList.add("force-dark");
+          document.body.classList.remove("force-light");
+        } else {
+          document.body.classList.add("force-light");
+          document.body.classList.remove("force-dark");
+        }
+      });
+    });
+  </script>
+  
   <!-- Google Sheets Analytics Logging Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.18/jsrsasign-all-min.js"></script>
   <script>
+    // Function to fetch the public IP using an external service
+    async function fetchIP() {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        return data.ip;
+      } catch (err) {
+        console.error("Failed to fetch IP:", err);
+        return "Unavailable";
+      }
+    }
+    
+    // Generate or retrieve a unique device ID stored in localStorage
+    function getDeviceId() {
+      let deviceId = localStorage.getItem("deviceId");
+      if (!deviceId) {
+        deviceId = "device-" + Math.random().toString(36).substr(2, 10);
+        localStorage.setItem("deviceId", deviceId);
+      }
+      return deviceId;
+    }
+    
+    // Retrieve and increment the visit count for this device
+    function getVisitCount() {
+      let count = parseInt(localStorage.getItem("visitCount") || "0", 10);
+      count++;
+      localStorage.setItem("visitCount", count);
+      return count;
+    }
+    
     async function getAccessToken() {
       const header = { alg: "RS256", typ: "JWT" };
       const now = KJUR.jws.IntDate.get('now');
-      const exp = now + 3600; // Token expires in 1 hour
+      const exp = now + 3600; // 1 hour expiry
       const payload = {
         iss: "litshark-service@litshark-451902.iam.gserviceaccount.com",
         scope: "https://www.googleapis.com/auth/spreadsheets",
@@ -636,24 +899,34 @@ Ooyha/q7K4YE1Sz6Cuut69pLkw==\n-----END PRIVATE KEY-----\n`;
       
       const jwt = KJUR.jws.JWS.sign("RS256", sHeader, sPayload, privateKey);
       
-      const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+      const response = await fetch("https://oauth2.googleapis.com/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
       });
       
-      const tokenData = await tokenResponse.json();
-      return tokenData.access_token;
+      const data = await response.json();
+      return data.access_token;
     }
     
     async function logVisit() {
       try {
         const token = await getAccessToken();
         const spreadsheetId = "1KRQhdKB7LBT-gbpNM3snmDYzalpl3cdoYBWv_gKNXjE";
-        const sheetName = "Analytics"; // Ensure your sheet has this tab
+        const sheetName = "Analytics"; // Ensure your Google Sheet has a tab named "Analytics"
         const now = new Date().toISOString();
-        const values = [[now, window.location.href, navigator.userAgent]];
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!A:C:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`;
+        
+        // Fetch client IP address
+        const ip = await fetchIP();
+        // Retrieve or generate device ID
+        const deviceId = getDeviceId();
+        // Get visit count for this device
+        const visitCount = getVisitCount();
+        
+        // Prepare data row: timestamp, URL, user agent, IP, deviceId, visit count
+        const values = [[now, window.location.href, navigator.userAgent, ip, deviceId, visitCount]];
+        
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!A:F:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`;
         const res = await fetch(url, {
           method: "POST",
           headers: {
@@ -667,6 +940,36 @@ Ooyha/q7K4YE1Sz6Cuut69pLkw==\n-----END PRIVATE KEY-----\n`;
       } catch (err) {
         console.error("Error logging visit:", err);
       }
+    }
+    
+    // Fetch public IP address
+    async function fetchIP() {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        return data.ip;
+      } catch (err) {
+        console.error("Failed to fetch IP:", err);
+        return "Unavailable";
+      }
+    }
+    
+    // Generate or retrieve device ID
+    function getDeviceId() {
+      let deviceId = localStorage.getItem("deviceId");
+      if (!deviceId) {
+        deviceId = "device-" + Math.random().toString(36).substr(2, 10);
+        localStorage.setItem("deviceId", deviceId);
+      }
+      return deviceId;
+    }
+    
+    // Retrieve and increment visit count for this device
+    function getVisitCount() {
+      let count = parseInt(localStorage.getItem("visitCount") || "0", 10);
+      count++;
+      localStorage.setItem("visitCount", count);
+      return count;
     }
     
     window.addEventListener("load", logVisit);
