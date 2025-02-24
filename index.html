@@ -92,7 +92,7 @@
     }
     .service-box img {
       width: 100%;
-      height: 250px; /* Force a square area */
+      height: 250px;
       object-fit: cover;
       object-position: center;
       display: block;
@@ -101,6 +101,7 @@
       padding: 10px;
       background: #f7f7f7;
       font-size: 1.2em;
+      color: #000;
     }
     /* Modal Styles */
     .modal {
@@ -123,6 +124,7 @@
       max-width: 600px;
       border-radius: 8px;
       position: relative;
+      color: #000;
     }
     .modal-content h2 {
       margin-top: 0;
@@ -193,6 +195,10 @@
         background: #333;
         border-color: #444;
       }
+      .service-title {
+        background: #444;
+        color: #fff;
+      }
       .modal-content {
         background-color: #222;
         color: #fff;
@@ -204,7 +210,7 @@
       table th, table td {
         border-color: #555;
       }
-      /* Invert the logo colors for dark mode */
+      /* Invert the logo for dark mode */
       .header-logo {
         filter: invert(1);
       }
@@ -250,6 +256,10 @@
       <div class="service-box" data-modal="modal-3d">
         <img src="images/3d-printing.png" alt="3D Design & Printing">
         <div class="service-title">3D Design & Printing</div>
+      </div>
+      <div class="service-box" data-modal="modal-webdesign">
+        <img src="images/web-design.png" alt="Web Design">
+        <div class="service-title">Web Design</div>
       </div>
     </div>
     
@@ -325,8 +335,8 @@
       <span class="close">&times;</span>
       <h2>Snow Removal</h2>
       <p>
-        I personally clear driveways, walkways, and small parking areas during the winter. 
-        When heavy snow or ice hits, you can count on me to keep your property safe and accessible—handled one-on-one.
+        I personally clear driveways, walkways, and small parking areas during the winter. When heavy snow or ice hits, 
+        you can count on me to keep your property safe and accessible—handled one-on-one.
       </p>
       <h3>Availability</h3>
       <ul>
@@ -335,12 +345,10 @@
         <li>Sun: All day</li>
       </ul>
       <h3>Prices</h3>
-      <!-- Integrated Apartment-House -->
       <h4>Integrated Apartment-House</h4>
       <p><em>"Compact Front-Entry Home"</em></p>
       <p>
-        A conjoined apartment or townhouse that has no driveway after the sidewalk. 
-        The entrance typically consists of house steps or a porch that is 1-2 meters in length.
+        A conjoined apartment or townhouse with no driveway past the sidewalk. The entrance typically has house steps or a porch of 1–2 meters.
       </p>
       <table>
         <thead>
@@ -364,12 +372,10 @@
           </tr>
         </tbody>
       </table>
-      <!-- Extended Driveway Home -->
       <h4>Extended Driveway Home</h4>
       <p><em>"Spacious Entryway Home"</em></p>
       <p>
-        A detached or semi-detached house that has a continued driveway after the sidewalk and 
-        features a porch, steps, or pathway of more than 2 meters leading to the entrance.
+        A detached or semi-detached house with a continued driveway past the sidewalk, featuring a porch, steps, or pathway of over 2 meters.
       </p>
       <table>
         <thead>
@@ -411,8 +417,7 @@
       <span class="close">&times;</span>
       <h2>Window Cleaning</h2>
       <p>
-        Enjoy sparkling windows without the fuss. I clean both the inside and outside of your windows, 
-        removing dirt and streaks so you get a clear view every day.
+        Enjoy sparkling windows without the fuss. I clean both the inside and outside, removing dirt and streaks for a clear view.
       </p>
       <h3>Availability</h3>
       <p>Upon request during summer, limited availability outside season.</p>
@@ -432,8 +437,7 @@
       <span class="close">&times;</span>
       <h2>Painting</h2>
       <p>
-        If you're looking to refresh your space, I offer personalized painting services for interiors and exteriors. 
-        I pay attention to every detail to give your home a fresh, lasting look.
+        I offer personalized painting services for interiors and exteriors to refresh your space with a lasting look.
       </p>
       <h3>Availability</h3>
       <p>Upon request during summer, limited availability outside season.</p>
@@ -458,11 +462,31 @@
       <h3>Availability</h3>
       <p>Available upon request. Turnaround time varies by project complexity.</p>
       <h3>Prices</h3>
-      <p>Pricing depends on design complexity, print size, and materials. Please contact me with your project details for a quote.</p>
+      <p>Pricing depends on design complexity, print size, and materials. Please contact me for a quote.</p>
       <h3>Recent Jobs</h3>
       <div class="job-images">
         <img src="images/3d-printing-before.jpg" alt="Before">
         <img src="images/3d-printing-after.jpg" alt="After">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Web Design Modal -->
+  <div id="modal-webdesign" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Web Design</h2>
+      <p>
+        I create modern, minimalist web designs that prioritize usability and clean aesthetics.
+      </p>
+      <h3>Availability</h3>
+      <p>Upon request.</p>
+      <h3>Prices</h3>
+      <p>Upon quote.</p>
+      <h3>Recent Jobs</h3>
+      <div class="job-images">
+        <img src="images/web-design-before.jpg" alt="Before">
+        <img src="images/web-design-after.jpg" alt="After">
       </div>
     </div>
   </div>
@@ -473,8 +497,7 @@
       <span class="close">&times;</span>
       <h2>Home Finishing</h2>
       <p>
-        Need a final touch for your home? I can help with small carpentry fixes, trim work, or other finishing touches. 
-        For bigger tasks, I’m happy to refer you to a reliable specialist.
+        Need a final touch for your home? I handle small carpentry fixes, trim work, or other finishing touches.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -494,8 +517,7 @@
       <span class="close">&times;</span>
       <h2>Drywalling/Framing</h2>
       <p>
-        Whether you need a wall patched or a bit of framing work, I handle smaller drywall projects. 
-        For more extensive jobs, I can refer you to a trusted contractor.
+        I handle small drywall projects and minor framing work. For more extensive jobs, I refer you to a trusted contractor.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -515,8 +537,7 @@
       <span class="close">&times;</span>
       <h2>Plumbing</h2>
       <p>
-        Got a minor leak or a simple plumbing fix? I can take care of smaller issues, or 
-        connect you with a reliable plumber for bigger tasks.
+        For minor leaks or simple fixes, I handle small plumbing jobs or connect you with a reliable plumber for larger tasks.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -536,8 +557,7 @@
       <span class="close">&times;</span>
       <h2>Electrician</h2>
       <p>
-        If you need a quick electrical fix—like installing a light fixture or troubleshooting a minor issue—I can help. 
-        For more complicated projects, I'll connect you with a trusted electrician.
+        I can help with quick electrical fixes such as light fixture installations or troubleshooting minor issues.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -557,7 +577,7 @@
       <span class="close">&times;</span>
       <h2>Blade Smithing</h2>
       <p>
-        Looking for a custom blade? One of my favorite side hobbies is knife crafting during the summer, and I would be happy to provide you with a strong and long lasting blade from your chosen materials.
+        I craft custom blades as a side hobby during the summer, delivering strong, long-lasting results.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -577,7 +597,7 @@
       <span class="close">&times;</span>
       <h2>Flooring</h2>
       <p>
-        I provide flooring installation and repair services. Whether it's a repair or a new installation, I handle the work with care, and for larger projects, I can refer you to a trusted specialist.
+        I provide flooring installation and repair services. Whether it's a repair or a new installation, I handle the work with care.
       </p>
       <h3>Availability</h3>
       <p>Upon request.</p>
@@ -591,32 +611,87 @@
     </div>
   </div>
   
+  <!-- Include jsrsasign library for JWT signing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.25/rsasign-all-min.js"></script>
+  <!-- Google API for Sheets -->
+  <script src="https://apis.google.com/js/api.js"></script>
   <script>
-    // Open the modal when a service box is clicked.
-    document.querySelectorAll('.service-box').forEach(box => {
-      box.addEventListener('click', () => {
-        const modalId = box.getAttribute('data-modal');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.style.display = 'block';
-        }
-      });
-    });
-    
-    // Close the modal when the close button is clicked.
-    document.querySelectorAll('.modal .close').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const modal = btn.closest('.modal');
-        modal.style.display = 'none';
-      });
-    });
-    
-    // Close the modal if clicking outside the modal content.
-    window.addEventListener('click', (event) => {
-      if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-      }
-    });
+    // Service account credentials (EXPOSED - for demonstration only)
+    const serviceAccount = {
+      "type": "service_account",
+      "project_id": "litshark-451902",
+      "private_key_id": "cd457d9587cf9167bbbf563cfd5e27520c28b712",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgwCssn3lNbBS9\nJL1lJvQBhfY8/uBW9T8w9BPT/WnpW24h+3K1nSxAmM8iRLoCSiJbJMPd6+WXbhPg\nPPFpEzv688wmKFsPGXpsTT36QmzSZ5nXmxBpFEj+ai58rmoUe4Ld3C2cjUeA/83K\n0JbTIETsDtwzI886/ZPGChTd/BoXHx9iegLGA6V+1fmcFyeqz/BtVtDDD9MfU3Ba\njF7DeLWI48PpCoWkNawjRXra0g0VauU8XtcKEjmJcHbl9ahTiFNfBiqWBoV8XFcm\nU65yKHsRQdIMDKG3CoqpRJ7ZEgxJXNwDzJZTfFAkgr/H96yGytWlgPkOjuJo633I\nLJfhhszRAgMBAAECggEABRG6UThtBPRQSel5ylHqc1sMBliYe4JVYU/sViZeK8LV\nDyyuRxLmfXNnYmXEPErZMk81zAhJEurtcbtXEGC2Zs+l+igSPKb2VaowttuKy5UC\n/kOAeeFu+3Lrj18yrv2sHuuQ43VDGLE4bKZoszS7AUfnFfr4AumFoPYNbWiqhY/j\nwnkxf1c9OJd0Fd6jGeAySUc7+Y8HVJhXhqaP8kHdw/ct9EfSBsX/nCuLkDMX+T4S\nE6p4h7LAMCagIIQwJ3upCkRZRU5NbKvFphuoRSpAdFEjiQCraEm7Hxx6KmKqrYrG\n1KVV4yyDi58r21g7zRcgRqBnSnHIedcxW09r9o64TwKBgQDbGAVQ/s9la43NqGiu\nlr9IbwZm7yXtvY87x62/YB9x5Dv+wlBvuSCpxQp8WaLH+OHafQ6hZc9ihVuauAyo\n0UFgvqeMgTU1FrzZ5ZfnnaE0jhEO9kRarN4879KORaDULrxtBWCon3ZWVaQt0gId\nslf4IfEjN/Hd9WvMDHfJrlCoJwKBgQC71DdiBu4e0zhU6ZiG6bbuJL+EbF8D9lNu\ntNLUpjlXIt9MUnGCii0g6waE5ZxNgVvzh52tfRvF+KvlcIZm6xS0IZQmJQXkhdRR\nIhmV2YFW91SzzpHJSxAyUcFIJfAm+MqTwV7rDR9EeM2deoZkageMpU5q/tMPE4EU\n+gcFRlbGRwKBgQCw10ijQajhMdj5YK9uDFtE+ehu+STiKhkMpXWGfO2knhYW4XzP\nUNwea9601Bzhz+9szXgbqfOkkAOKdHgzYwOkNP9EF558xWeVcQ4Vc1QE+Y6nRvuR\nPOr8wI5xK55O5ZJNZQPJ1zxLH0Evgs0Wbzc2Hx9lz+g3wbpKrt2ZOkv8DQKBgBYV\nICHFQM+c852ADS+nYJtk9KND/nO/zRVR6wuXM1ycO/aEJtY7Go0pNI4BVLwD/mSG\nSDJyaAaBcuw5q4OEFd4LqJhHeAbi+RBE2w80EDHCSFIPcjJhQdk4pWmvFCnwzBhM\n/rTRySBKt5nRIuXBVXvin3KS3QuDtoRZ1ON43pDXAoGAZMXSXkcaTAQe9d7Ki8up\n6V33WdfJbiTNUkA0MrtMHoeJjK+R64IrGF5Oz9R4W6o3u7WD/HojrOaMERskturr\nrOjkERIbxvHWVou5WoRpojYrJXhC6iYGZZ9QNLLs+okN6/WsDpqx9sTUx6yulcnc\ntck8BwLBPBUEaQ0U/hQlk28=\n-----END PRIVATE KEY-----\n",
+      "client_email": "litshark-service@litshark-451902.iam.gserviceaccount.com",
+      "client_id": "110852862532269228908",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/litshark-service%40litshark-451902.iam.gserviceaccount.com",
+      "universe_domain": "googleapis.com"
+    };
+
+    // Use jsrsasign to sign a JWT for the service account.
+    function getAccessToken() {
+      const header = { alg: "RS256", typ: "JWT" };
+      const now = KJUR.jws.IntDate.get('now');
+      const exp = now + 3600; // 1 hour validity
+      const claim = {
+        iss: serviceAccount.client_email,
+        scope: "https://www.googleapis.com/auth/spreadsheets",
+        aud: serviceAccount.token_uri,
+        exp: exp,
+        iat: now
+      };
+      const sHeader = JSON.stringify(header);
+      const sClaim = JSON.stringify(claim);
+      const jwt = KJUR.jws.JWS.sign("RS256", sHeader, sClaim, serviceAccount.private_key);
+      
+      return fetch(serviceAccount.token_uri, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=" + jwt
+      }).then(response => response.json());
+    }
+
+    // Log visit data to Google Sheet.
+    function logVisit() {
+      const visitTime = new Date().toISOString();
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(ipData => {
+          const ip = ipData.ip;
+          const userAgent = navigator.userAgent;
+          const device = navigator.platform;
+          getAccessToken().then(tokenData => {
+            const accessToken = tokenData.access_token;
+            appendRowToSheet(visitTime, ip, userAgent, device, accessToken);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching IP:", error);
+        });
+    }
+
+    function appendRowToSheet(time, ip, userAgent, device, accessToken) {
+      const spreadsheetId = '1KRQhdKB7LBT-gbpNM3snmDYzalpl3cdoYBWv_gKNXjE';
+      const range = 'Sheet1!A:D'; // Adjust if needed
+      const values = [[ time, ip, userAgent, device ]];
+      const body = { values: values };
+
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED`, {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + accessToken,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      }).then(response => response.json())
+        .then(data => console.log("Logged visit:", data))
+        .catch(error => console.error("Error logging visit:", error));
+    }
+
+    logVisit();
   </script>
 </body>
 </html>
