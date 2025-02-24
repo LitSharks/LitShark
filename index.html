@@ -101,7 +101,6 @@
       padding: 10px;
       background: #f7f7f7;
       font-size: 1.2em;
-      color: #000;
     }
     /* Modal Styles */
     .modal {
@@ -124,10 +123,14 @@
       max-width: 600px;
       border-radius: 8px;
       position: relative;
-      color: #000;
     }
-    .modal-content h2, .modal-content h3 {
-      color: inherit;
+    .modal-content h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .modal-content h3 {
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
     .close {
       position: absolute;
@@ -173,7 +176,6 @@
       height: 24px;
       object-fit: contain;
     }
-    
     /* DARK MODE OVERRIDES */
     @media (prefers-color-scheme: dark) {
       body {
@@ -186,16 +188,9 @@
       nav {
         background: #333;
       }
-      section {
-        background-color: transparent;
-      }
       .service-box {
         background: #333;
         border-color: #444;
-      }
-      .service-title {
-        background: #444;
-        color: #fff;
       }
       .modal-content {
         background-color: #222;
@@ -214,8 +209,6 @@
       }
     }
   </style>
-  <!-- Load jsrsasign for JWT signing -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.25/rsasign-all-min.js"></script>
 </head>
 <body>
   <!-- Header and Navigation -->
@@ -256,10 +249,6 @@
       <div class="service-box" data-modal="modal-3d">
         <img src="images/3d-printing.png" alt="3D Design & Printing">
         <div class="service-title">3D Design & Printing</div>
-      </div>
-      <div class="service-box" data-modal="modal-webdesign">
-        <img src="images/web-design.png" alt="Web Design">
-        <div class="service-title">Web Design</div>
       </div>
     </div>
     
@@ -345,6 +334,7 @@
         <li>Sun: All day</li>
       </ul>
       <h3>Prices</h3>
+      <!-- Integrated Apartment-House -->
       <h4>Integrated Apartment-House</h4>
       <p><em>"Compact Front-Entry Home"</em></p>
       <p>
@@ -373,6 +363,7 @@
           </tr>
         </tbody>
       </table>
+      <!-- Extended Driveway Home -->
       <h4>Extended Driveway Home</h4>
       <p><em>"Spacious Entryway Home"</em></p>
       <p>
@@ -472,21 +463,6 @@
         <img src="images/3d-printing-before.jpg" alt="Before">
         <img src="images/3d-printing-after.jpg" alt="After">
       </div>
-    </div>
-  </div>
-  
-  <!-- Web Design Modal -->
-  <div id="modal-webdesign" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Web Design</h2>
-      <p>
-        I offer simple, minimal web design solutions. Availability is upon request and price is upon quote.
-      </p>
-      <h3>Availability</h3>
-      <p>Upon request.</p>
-      <h3>Prices</h3>
-      <p>Upon quote.</p>
     </div>
   </div>
   
@@ -614,118 +590,86 @@
     </div>
   </div>
   
+  <!-- Google Sheets Analytics Logging Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.5.18/jsrsasign-all-min.js"></script>
   <script>
-    // Open the modal when a service box is clicked.
-    document.querySelectorAll('.service-box').forEach(box => {
-      box.addEventListener('click', () => {
-        const modalId = box.getAttribute('data-modal');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.style.display = 'block';
-        }
-      });
-    });
-    
-    // Close the modal when the close button is clicked.
-    document.querySelectorAll('.modal .close').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const modal = btn.closest('.modal');
-        modal.style.display = 'none';
-      });
-    });
-    
-    // Close the modal if clicking outside the modal content.
-    window.addEventListener('click', (event) => {
-      if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-      }
-    });
-  
-    // --- Analytics Logging to Google Sheets ---
-    // Service account credentials (WARNING: Exposing these in client-side code is a security risk)
-    var serviceAccount = {
-      "type": "service_account",
-      "project_id": "litshark-451902",
-      "private_key_id": "cd457d9587cf9167bbbf563cfd5e27520c28b712",
-      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgwCssn3lNbBS9\nJL1lJvQBhfY8/uBW9T8w9BPT/WnpW24h+3K1nSxAmM8iRLoCSiJbJMPd6+WXbhPg\nPPFpEzv688wmKFsPGXpsTT36QmzSZ5nXmxBpFEj+ai58rmoUe4Ld3C2cjUeA/83K\n0JbTIETsDtwzI886/ZPGChTd/BoXHx9iegLGA6V+1fmcFyeqz/BtVtDDD9MfU3Ba\njF7DeLWI48PpCoWkNawjRXra0g0VauU8XtcKEjmJcHbl9ahTiFNfBiqWBoV8XFcm\nU65yKHsRQdIMDKG3CoqpRJ7ZEgxJXNwDzJZTfFAkgr/H96yGytWlgPkOjuJo633I\nLJfhhszRAgMBAAECggEABRG6UThtBPRQSel5ylHqc1sMBliYe4JVYU/sViZeK8LV\nDyyuRxLmfXNnYmXEPErZMk81zAhJEurtcbtXEGC2Zs+l+igSPKb2VaowttuKy5UC\n/kOAeeFu+3Lrj18yrv2sHuuQ43VDGLE4bKZoszS7AUfnFfr4AumFoPYNbWiqhY/j\nwnkxf1c9OJd0Fd6jGeAySUc7+Y8HVJhXhqaP8kHdw/ct9EfSBsX/nCuLkDMX+T4S\nE6p4h7LAMCagIIQwJ3upCkRZRU5NbKvFphuoRSpAdFEjiQCraEm7Hxx6KmKqrYrG\n1KVV4yyDi58r21g7zRcgRqBnSnHIedcxW09r9o64TwKBgQDbGAVQ/s9la43NqGiu\nlr9IbwZm7yXtvY87x62/YB9x5Dv+wlBvuSCpxQp8WaLH+OHafQ6hZc9ihVuauAyo\n0UFgvqeMgTU1FrzZ5ZfnnaE0jhEO9kRarN4879KORaDULrxtBWCon3ZWVaQt0gId\nslf4IfEjN/Hd9WvMDHfJrlCoJwKBgQC71DdiBu4e0zhU6ZiG6bbuJL+EbF8D9lNu\ntNLUpjlXIt9MUnGCii0g6waE5ZxNgVvzh52tfRvF+KvlcIZm6xS0IZQmJQXkhdRR\nIhmV2YFW91SzzpHJSxAyUcFIJfAm+MqTwV7rDR9EeM2deoZkageMpU5q/tMPE4EU\n+gcFRlbGRwKBgQCw10ijQajhMdj5YK9uDFtE+ehu+STiKhkMpXWGfO2knhYW4XzP\nUNwea9601Bzhz+9szXgbqfOkkAOKdHgzYwOkNP9EF558xWeVcQ4Vc1QE+Y6nRvuR\nPOr8wI5xK55O5ZJNZQPJ1zxLH0Evgs0Wbzc2Hx9lz+g3wbpKrt2ZOkv8DQKBgBYV\nICHFQM+c852ADS+nYJtk9KND/nO/zRVR6wuXM1ycO/aEJtY7Go0pNI4BVLwD/mSG\nSDJyaAaBcuw5q4OEFd4LqJhHeAbi+RBE2w80EDHCSFIPcjJhQdk4pWmvFCnwzBhM\n/rTRySBKt5nRIuXBVXvin3KS3QuDtoRZ1ON43pDXAoGAZMXSXkcaTAQe9d7Ki8up\n6V33WdfJbiTNUkA0MrtMHoeJjK+R64IrGF5Oz9R4W6o3u7WD/HojrOaMERskturr\nrOjkERIbxvHWVou5WoRpojYrJXhC6iYGZZ9QNLLs+okN6/WsDpqx9sTUx6yulcnc\ntck8BwLBPBUEaQ0U/hQlk28=\n-----END PRIVATE KEY-----\n",
-      "client_email": "litshark-service@litshark-451902.iam.gserviceaccount.com",
-      "client_id": "110852862532269228908",
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://oauth2.googleapis.com/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/litshark-service%40litshark-451902.iam.gserviceaccount.com",
-      "universe_domain": "googleapis.com"
-    };
-    // Google Sheets info
-    var SHEET_ID = "1KRQhdKB7LBT-gbpNM3snmDYzalpl3cdoYBWv_gKNXjE";
-    var SHEET_RANGE = "Sheet1!A1"; // adjust as needed
-
-    // Function to get an access token using a JWT signed with the service account's private key.
     async function getAccessToken() {
-      var header = { alg: "RS256", typ: "JWT" };
-      var now = Math.floor(Date.now() / 1000);
-      var claim = {
-        iss: serviceAccount.client_email,
+      const header = { alg: "RS256", typ: "JWT" };
+      const now = KJUR.jws.IntDate.get('now');
+      const exp = now + 3600; // Token expires in 1 hour
+      const payload = {
+        iss: "litshark-service@litshark-451902.iam.gserviceaccount.com",
         scope: "https://www.googleapis.com/auth/spreadsheets",
-        aud: serviceAccount.token_uri,
-        exp: now + 3600,
-        iat: now
+        aud: "https://oauth2.googleapis.com/token",
+        iat: now,
+        exp: exp
       };
-      var sHeader = JSON.stringify(header);
-      var sPayload = JSON.stringify(claim);
-      var jwt = KJUR.jws.JWS.sign("RS256", sHeader, sPayload, serviceAccount.private_key);
+      const sHeader = JSON.stringify(header);
+      const sPayload = JSON.stringify(payload);
+      const privateKey = `-----BEGIN PRIVATE KEY-----
+MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCMLMbSG1JxS+zo
+KDmicTgHxmJEnB0zOv1y6X/3S19wVlCSVMOrMzG7SZad5vwHEEBbdvlodLhIK965
+eLf79ymKH5t10uQ4+/WGkljNQdrYjDzGaZ4zk0Z6qmK+7EQTphf1O8pZLmzzyVq+
+QZLutjRRwMVrilVYdePr5mq36GcgYV0UUulsMIvrbNkxkYv/DV/0FgiwaAEEcaX6
+53ucRhysfJYlMYoeD0lY+fQtLgtJfgraZAl9V/6bwQeC+vLsz+mopzmliAvTr8LN
+j0YMNNyL4wtgarhCUtYD3uWZTPpocbYwLUzfdItlEdrsTLvOZ1z7HrgKiHvEyI3R
+g/+a6Zi5AgMBAAECggEABB+tGbFEE6EwLwQ/7c923oOvkGUnVsJ9gkvsP9Iv1JY1
+eJiVyQuQgvn/PFX3RB3uRsKRQ8lrQnRH8RzkDL2Qs0eKw0SZAjQnXPYhNqihT42Q
+nCWvScUjZahtj0BUIF/ahJRlt4nuGp3p1X8IW41wrJcHN8qyCBAvzFjS+uYTYphv
+hsL0ONdTIEtMZhTy1GnPhU93Fl1w+v0RlPniM0xBavZdNDSxUlc1aSbYEbdoXckI
+W9P+90m+zhrpEAnc4cNZqab9JK18NgNwyQTY2xXMSa4X5MgMaJ9zq8NeEa797U5x
+f+gTg8q2+eLDJ/hLby7+MhF3/+XviyD2QnvVmtm8gQKBgQDA7ILthmZcgobb2KVQ
+sz7vMqAGbEF1AxFFOeRUNtR8qEzP0Z3aio0r3oUfGp/hgXwt/quk+8Vd+yJ0QuLE
+3gxhzLoJbSI3TuTs0zmvjOLrUc6KxYvgXWFuu4xhzRsL6JVB193KpN1YGM9I/f2G
+7lz+mUjnyTSxZW9Sf6SKybZnhQKBgQC6AT4Pk4a8vQZLxReplpv+JoIr+1EfmYky
+zlx9z9940TpgAphDWyOb1k5t9fG8vkLn5cO0zOW8Q/oJ1Gtxj0ObYJ6+Et7OvjMY
+TpDTDdbOPgNMLGe24C5xemAUp2goWho5FB4w/CdMLklWFSdzndv6ZAEXPmor9Q6w
+xWEJtJtgpQKBgQCH2EIdBI0hSNuzBCrr1ztSbOBXhXTV8vH/P9NyJSWcHVnw39X6
+I6NiJ46vJy07OdT6AiBUzN/d3E8XdF1/aCdp2iGJL6pvLYNu6xDsdxT1xCXee1mS
+A87ujOs9lpIb4Yrv0ROgdFRTiyyyZf5WO5OJxt+aLoiG/TjU64IuI/jnjQKBgQCX
+0PnJltzrYdEouOaWWcJazy2CHm9ZPmT4HezqF2fL4eImiRekKlhHEsUTBSHYruZH
+BocVJAQDBOypZ0KG/qrswBDxDM/kqONlXILicLI5xe3FF51Ta2kc4AhZ80WVYe1z
+VxNJYhXlHQZoh32a5Wat2T/2q8/Wrv7dk0yfslT7rQKBgQCoYJSYKH06Ur0SCT5i
+X+zScnAUFoPYIIq8AoD9lf2G9Ac0TZ1dcm47QhUEL4YYtPi/6Dua5dZeYSZfxUoy
+0T72BqFsJvVH2fBIAKGNChRcMTpKEgOz1563cFsKUtg9qmlActSylbyht50Z5Cdv
+Ooyha/q7K4YE1Sz6Cuut69pLkw==\n-----END PRIVATE KEY-----\n`;
       
-      var response = await fetch(serviceAccount.token_uri, {
+      const jwt = KJUR.jws.JWS.sign("RS256", sHeader, sPayload, privateKey);
+      
+      const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-          assertion: jwt
-        })
+        body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
       });
-      var data = await response.json();
-      return data.access_token;
+      
+      const tokenData = await tokenResponse.json();
+      return tokenData.access_token;
     }
-
-    // Function to log analytics data to the Google Sheet
-    async function logAnalytics(info) {
-      var token = await getAccessToken();
-      var url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}:append?valueInputOption=USER_ENTERED`;
-      var body = {
-        values: [
-          [info.time, info.ip, info.userAgent]
-        ]
-      };
-      await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + token
-        },
-        body: JSON.stringify(body)
-      });
-    }
-
-    // Function to get the client's public IP address
-    async function getIP() {
+    
+    async function logVisit() {
       try {
-        var res = await fetch("https://api.ipify.org?format=json");
-        var data = await res.json();
-        return data.ip;
-      } catch(e) {
-        return "unknown";
+        const token = await getAccessToken();
+        const spreadsheetId = "1KRQhdKB7LBT-gbpNM3snmDYzalpl3cdoYBWv_gKNXjE";
+        const sheetName = "Analytics"; // Ensure your sheet has this tab
+        const now = new Date().toISOString();
+        const values = [[now, window.location.href, navigator.userAgent]];
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!A:C:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`;
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({ values })
+        });
+        const result = await res.json();
+        console.log("Logged visit:", result);
+      } catch (err) {
+        console.error("Error logging visit:", err);
       }
     }
-
-    // On page load, gather analytics info and log it
-    window.addEventListener("load", async function() {
-      var info = {
-        time: new Date().toISOString(),
-        ip: await getIP(),
-        userAgent: navigator.userAgent
-      };
-      logAnalytics(info);
-    });
+    
+    window.addEventListener("load", logVisit);
   </script>
 </body>
 </html>
